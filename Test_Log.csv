@@ -1,0 +1,36 @@
+ID,Check_Type,Steps,Expected_Result,Actual_Result,Pass_Fail,Evidence,Date_Prepared_or_Run,Tester
+B1,Original automated,Run original tests.js in Node,7/7 pass,7/7 pass; exit 0,PASS,evidence/baseline-node.txt,2026-10-05,AI environment
+B2,Original visual checkpoint,Open baseline/index.html,Paused marker and globe render,Browser executable missing; attempted installation failed; no rendered checkpoint,PENDING,evidence/browser-limitation.txt,2026-10-05,Student / partner pending
+A1,Final automated (Node),Pause preserves position,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+A2,Final automated (Node),North increases latitude,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+A3,Final automated (Node),East increases longitude,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+A4,Final automated (Node),Heading wraps in both directions,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+A5,Final automated (Node),Height limits clamp,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+A6,Final automated (Node),Zero speed keeps position,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+A7,Final automated (Node),Duration consistency: one second equals ten 0.1-second steps,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+A8,Final automated (Node),Single step moves 7 m north at 70 m/s and stays paused,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+A9,Final automated (Node),Single step while flying finishes paused,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+A10,Final automated (Node),Single step at zero speed stays in place,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+A11,Final automated (Node),Single step preserves input and other fields,Assertion true,Assertion true,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+BR1,Intentional break,Remove * dt and run tests,Duration-consistency and 7-meter tests expose defect,9 pass; 2 fail; exit 1,EXPECTED FAIL,evidence/broken-node.txt,2026-10-05,AI environment
+BR2,Repair,Restore * dt and rerun,11/11 pass,11/11 pass; exit 0,PASS,evidence/repaired-node.txt,2026-10-05,AI environment
+WEB,Browser test page,Open tests.html,11 PASS lines; no FAIL lines,Not run in browser; Node execution is separately documented,PENDING,evidence/browser-limitation.txt,2026-10-05,Student / partner pending
+M1,Provisional manual,Load globe and default state,"Paused visible gold marker; heading 0; speed 70; height 500; origin -75.93,40.33",Not performed; compare with Canvas page 6,PENDING,Add actual observation and screenshot after running,2026-10-05,Student / partner pending
+M2,Provisional manual,Fly then Pause,Latitude increases while flying and remains fixed when paused,Not performed; compare with Canvas page 6,PENDING,Add actual observation and screenshot after running,2026-10-05,Student / partner pending
+M3,Provisional manual,Left once; Right twice from Reset,Heading 350 then 0 then 10,Not performed; compare with Canvas page 6,PENDING,Add actual observation and screenshot after running,2026-10-05,Student / partner pending
+M4,Provisional manual,Check speed zero and input limits,No movement at zero; speed 999 clamps to 250; height 9000 to 5000 and -1 to 50,Not performed; compare with Canvas page 6,PENDING,Add actual observation and screenshot after running,2026-10-05,Student / partner pending
+M5,Provisional manual,Step paused/flying/zero-speed then Reset,7-meter default update and paused state; zero-speed stationary; defaults restored,Not performed; compare with Canvas page 6,PENDING,Add actual observation and screenshot after running,2026-10-05,Student / partner pending
+M6,Provisional manual,Switch tabs during flight; return; keyboard Step,Auto-pause; no large jump; button works with keyboard,Not performed; compare with Canvas page 6,PENDING,Add actual observation and screenshot after running,2026-10-05,Student / partner pending
+PARTNER,Partner reproduction,Partner follows README and suggests improvement,Record real feedback; implement one improvement; retest,No partner session conducted,PENDING,Complete README partner section,2026-10-05,Student / partner pending
+API,Documentation review,Compare app.js coordinate call with official fromDegrees docs,Longitude then latitude in degrees; height in meters above ellipsoid,Argument order and height label match API documentation,PASS,README geographic/API section; official source checked 2026-10-05,2026-10-05,AI environment
+J1,Node integration; rendering/network mocked,Startup camera and destination,Assertion passes,Assertion passed,PASS,evidence/japan-integration.txt,2026-10-05,AI environment
+J2,Node integration; rendering/network mocked,Route pause,Assertion passes,Assertion passed,PASS,evidence/japan-integration.txt,2026-10-05,AI environment
+J3,Node integration; rendering/network mocked,Seven geodesic legs finish at Sapporo,Assertion passes,Assertion passed,PASS,evidence/japan-integration.txt,2026-10-05,AI environment
+J4,Node integration; rendering/network mocked,Reset to Reading,Assertion passes,Assertion passed,PASS,evidence/japan-integration.txt,2026-10-05,AI environment
+J5,Node integration; rendering/network mocked,Token wiring and clear,Assertion passes,Assertion passed,PASS,evidence/japan-integration.txt,2026-10-05,AI environment
+J6,Browser/live imagery,Use valid token and run tour,Visible land and satellite tiles; tour works,Not performed; no user token supplied and browser unavailable,PENDING,Student screenshot needed,2026-10-05,Student pending
+Q1,Node integration,Quick jump and selected routes,Assertions pass,All eight integration checks pass,PASS,evidence/quick-routes.txt,2026-10-05,AI environment
+Q2,Launcher HTTP,Start Python launcher and request index.html,HTTP 200 with quick-jump controls,HTTP 200 with quick-jump controls,PASS,evidence/launcher.txt,2026-10-05,AI environment
+Q3,Windows launcher,Double-click START_FLIGHT_LAB.bat,Browser opens working app,Not executed on Windows,PENDING,User check needed,2026-10-05,Student pending
+E1,Node integration,Explorer controls and dashboard,12 assertions pass,12 checks passed,PASS,evidence/explorer-upgrade.txt,2026-10-05,AI environment
+E2,Visual browser,Inspect new layout airplane trail and camera,Features render and frame correctly,Not performed in assistant environment,PENDING,User browser check needed,2026-10-05,Student pending

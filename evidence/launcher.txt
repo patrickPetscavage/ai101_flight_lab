@@ -1,0 +1,2 @@
+PASS: Python launcher binds to loopback on an available port and serves index.html with quick-jump controls via HTTP.
+Browser opening was stubbed for this check. Windows BAT execution and browser rendering need user verification.
