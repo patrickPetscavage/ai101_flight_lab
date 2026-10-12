@@ -1,0 +1,19 @@
+[
+  { name: 'Pause preserves position', pass: true },
+  { name: 'North increases latitude', pass: true },
+  { name: 'East increases longitude', pass: true },
+  { name: 'Heading wraps in both directions', pass: true },
+  { name: 'Height limits clamp', pass: true },
+  { name: 'Zero speed keeps position', pass: true },
+  {
+    name: 'Duration consistency: one second equals ten 0.1-second steps',
+    pass: true
+  },
+  {
+    name: 'Single step moves 7 m north at 70 m/s and stays paused',
+    pass: true
+  },
+  { name: 'Single step while flying finishes paused', pass: true },
+  { name: 'Single step at zero speed stays in place', pass: true },
+  { name: 'Single step preserves input and other fields', pass: true }
+]

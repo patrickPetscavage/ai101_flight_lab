@@ -1,0 +1,6 @@
+PASS seven regions, five unique sourced stops each
+PASS exact overview + five stops order across all seven regions
+PASS camera coordinates normalized and all flight altitudes positive
+PASS single-region scope, pause/resume, and reading holds unaffected by 5x
+PASS reading pause, next/previous, and stop prevent unwanted progression
+PASS restart clears old itinerary and rejects unknown region

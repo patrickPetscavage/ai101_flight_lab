@@ -1,0 +1,6 @@
+PASS local launcher auto-loads untracked JSON token into config.js (dummy token).
+PASS direct private JSON requests return 404.
+PASS Pages build injects environment token only into published output (dummy token).
+PASS source config unchanged; local JSON excluded from build.
+PASS interface.js included in public build.
+Live GitHub workflow and WebGL entrance/layout not executed in assistant environment.

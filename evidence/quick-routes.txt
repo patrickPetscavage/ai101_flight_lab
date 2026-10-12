@@ -1,0 +1,8 @@
+PASS startup camera and Tokyo selection
+PASS route pauses without advancing
+PASS all seven legs arrive at Sapporo and pause (real Cesium geodesics)
+PASS Reset restores starter origin
+PASS instant Kyoto jump pauses and cancels route
+PASS selected Osaka to Okinawa route
+PASS identical start and end stays paused
+PASS token passed to imagery request and cleared (mock network; not live authentication)

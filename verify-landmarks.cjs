@@ -1,0 +1,27 @@
+// Real Cesium 1.145 geodesics; no renderer or network. Pass path to Cesium.js.
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const ctx=vm.createContext({console,URL,TextDecoder,TextEncoder,atob,btoa,setTimeout,clearTimeout,TransformStream,ReadableStream,WritableStream,AbortController});ctx.global=ctx;
+vm.runInContext(fs.readFileSync(process.argv[2],'utf8'),ctx);
+const regions=require('./landmarks.js'),Tour=require('./guided-tour.js'),C=ctx.Cesium;
+assert.equal(regions.length,7);assert(regions.every(r=>r.stops.length===5));
+const all=regions.flatMap(r=>r.stops);assert.equal(new Set(all.map(s=>s.id)).size,35);
+assert(all.every(s=>s.title&&s.description&&new URL(s.source).protocol==='https:'&&s.checked==='2026-10-07'&&s.coordinateNote));
+console.log('PASS seven regions, five unique sourced stops each');
+let frames=0,card,ended=0;const order=[];
+const t=Tour.create({Cesium:C,regions,onFrame:p=>{frames++;assert(p.lon>=-180&&p.lon<=180);assert(p.lat>=-90&&p.lat<=90);assert(p.altitude>0);},onCard:c=>{card=c;if(c.phase==='moving')order.push(c.step.id);},onEnd:()=>ended++});
+t.start(null,{lon:-75.93,lat:40.33,altitude:18000},8);
+for(let i=0;i<10000&&t.active;i++)t.tick(.1,1);
+assert(!t.active);assert.equal(ended,1);assert.equal(order.length,42);
+assert.deepEqual(order,regions.flatMap(r=>[r.id,...r.stops.map(s=>s.id)]));
+assert.equal(card.phase,'complete');console.log('PASS exact overview + five stops order across all seven regions');
+assert(frames>1000);console.log('PASS camera coordinates normalized and all flight altitudes positive');
+t.start('kyoto',{lon:135.75,lat:35.02,altitude:18000},12);assert.equal(t.total,6);
+t.tick(.5);t.pause();const count=frames;t.tick(50,5);assert.equal(frames,count);assert.equal(t.index,0);
+t.resume();while(t.phase==='moving')t.tick(.1,5);
+t.tick(2,5);assert.equal(t.index,0);t.tick(1.1,5);assert.equal(t.index,1);
+console.log('PASS single-region scope, pause/resume, and reading holds unaffected by 5x');
+while(t.phase==='moving')t.tick(.1,5);t.pause();const index=t.index;t.tick(100,5);assert.equal(t.index,index);
+t.next();assert.equal(t.index,2);assert(t.paused);t.previous();assert.equal(t.index,1);t.stop();t.tick(100);assert(!t.active);assert.equal(t.phase,'idle');
+console.log('PASS reading pause, next/previous, and stop prevent unwanted progression');
+t.start('okinawa',{lon:127.68,lat:26.21,altitude:18000},8);t.stop();t.start('tokyo',{lon:139.75,lat:35.69,altitude:18000},8);assert.equal(t.step.regionId,'tokyo');assert.equal(t.index,0);assert.throws(()=>t.start('unknown',{lon:0,lat:0,altitude:1000}));
+console.log('PASS restart clears old itinerary and rejects unknown region');

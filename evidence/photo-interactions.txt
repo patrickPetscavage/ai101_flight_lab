@@ -1,0 +1,6 @@
+PASS seven linked photos and near-region projection
+PASS marker opens correct description and pauses travel
+PASS unavailable image retains blurb and source
+PASS Escape closes dialog and restores focus
+PASS list selection resets image and locate selects exact landmark
+PASS toggle and distant/backside globe positions hide markers
